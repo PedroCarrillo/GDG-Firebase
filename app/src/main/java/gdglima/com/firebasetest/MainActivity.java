@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 logout();
-                signOutButton.setEnabled(false);
             }
         });
 
@@ -126,6 +125,11 @@ public class MainActivity extends AppCompatActivity {
         if (mAuth == null) {
             return;
         }
+        if (username.isEmpty() || password.isEmpty()) {
+            Toast.makeText(MainActivity.this, R.string.complete_message,
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
         mAuth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -134,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, R.string.authentication_failed,
                                     Toast.LENGTH_SHORT).show();
                         } else {
+                            submitButton.setEnabled(false);
                             signOutButton.setEnabled(true);
                             Toast.makeText(MainActivity.this, R.string.authentication_success,
                                     Toast.LENGTH_SHORT).show();
@@ -143,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logout() {
+        signOutButton.setEnabled(false);
+        submitButton.setEnabled(true);
         if (mAuth != null) {
             mAuth.signOut();
         }
