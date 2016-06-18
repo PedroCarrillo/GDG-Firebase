@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Firebase Test</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="authentication_failed">Authentication failed.</string>
+    <string name="authentication_success">Authentication Success</string>
+    <string name="signout">Sign Out</string>
 </resources>
